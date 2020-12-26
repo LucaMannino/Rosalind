@@ -1,0 +1,29 @@
+with open("/home/lm463/jupyter_notebooks/Rosalind/rosalind_dna.txt", "r") as myfile:
+    DNA_String=myfile.read().rstrip('\n')
+
+#first soliution 
+
+A_count = DNA_String.count('A')
+C_count = DNA_String.count('C')
+G_count = DNA_String.count('G')
+T_count = DNA_String.count('T')
+Count = str(A_count) + " " + str(C_count) + " " + str(G_count) + " " + str(T_count)
+print(Count)
+
+
+#very similar but condensing in just one line
+
+def NuCount(s):
+      return s.count("A"), s.count("G"), s.count("C"), s.count("T")
+NuCount(DNA_String)
+#using generator expression again in juest one line of code
+
+print(*(DNA_String.count(nuc) for nuc in "AGCT"))
+
+#this last solution iterates through the code only once.
+#could be useful with large datasets
+freq = {'A': 0, 'C': 0, 'G': 0, 'T': 0}
+for i in DNA_String:
+    freq[i] = freq[i] + 1
+
+print(freq['A'], freq['C'], freq['G'], freq['T'])
